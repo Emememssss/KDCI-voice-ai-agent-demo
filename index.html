@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KDCI 4.0 — AI-Powered Operations Demo. Experience KDCI's AI Voice Agent live.">
+<meta property="og:title" content="KDCI 4.0 — AI Voice Agent Demo">
+<meta property="og:description" content="Talk to Emman, KDCI's AI Support Agent. Available 24/7.">
+<meta property="og:type" content="website">
+<title>KDCI 4.0 — AI Voice Agent Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --red: #CC0000;
+    --red-dim: #8B0000;
+    --red-bright: #FF1A1A;
+    --white: #F5F5F5;
+    --gray: #A0A0A0;
+    --gray-dim: #2A2A2A;
+    --border: rgba(204,0,0,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO / BRANDING ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #05080F;
+  }
+
+  /* Space background SVG inline */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+  }
+
+  /* Vignette overlay so text stays legible */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(5,8,15,0.75) 100%);
+    pointer-events: none;
+  }
+
+  /* Scanline texture for cyberpunk feel */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .kdci-version {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .kdci-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 10rem);
+    letter-spacing: 0.05em;
+    line-height: 0.9;
+    color: var(--white);
+    text-shadow:
+      0 0 40px rgba(204,0,0,0.6),
+      0 0 80px rgba(204,0,0,0.3),
+      2px 2px 0px rgba(0,0,0,0.8);
+    animation: fadeDown 0.8s ease 0.1s both;
+  }
+
+  .kdci-title span {
+    color: var(--red);
+    text-shadow:
+      0 0 30px rgba(255,26,26,0.9),
+      0 0 60px rgba(204,0,0,0.6);
+  }
+
+  .tagline {
+    margin-top: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    text-transform: uppercase;
+    animation: fadeDown 0.8s ease 0.2s both;
+  }
+
+  .tagline strong {
+    color: var(--red);
+    font-weight: 400;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Red animated line under hero */
+  .hero-line {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+    animation: lineGlow 3s ease-in-out infinite alternate;
+  }
+  @keyframes lineGlow {
+    from { opacity: 0.5; }
+    to   { opacity: 1; box-shadow: 0 0 12px var(--red); }
+  }
+
+  /* ── CONTENT SECTIONS ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    opacity: 0.8;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  p, li {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.75;
+  }
+
+  /* ── WIDGET SECTION ── */
+  .widget-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    background: rgba(204,0,0,0.03);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .widget-section::before {
+    content: 'LIVE';
+    position: absolute;
+    top: -0.65rem;
+    left: 1.5rem;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .widget-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ── HOW TO DEMO ── */
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 640px) { .demo-grid { grid-template-columns: 1fr; } }
+
+  .demo-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .demo-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .demo-card h3 .icon {
+    font-size: 1.1rem;
+  }
+
+  ol, ul {
+    padding-left: 1.25rem;
+  }
+
+  ol li, ul li {
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .step-num {
+    color: var(--red);
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 600;
+  }
+
+  .highlight {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .phone-number {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--red-bright);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .disclaimer {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-left: 2px solid var(--red-dim);
+    background: rgba(139,0,0,0.08);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .disclaimer p {
+    font-size: 0.78rem;
+    color: #888;
+  }
+
+  .disclaimer strong {
+    color: var(--red);
+    font-weight: 500;
+  }
+
+  /* ── SAMPLE QUESTIONS ── */
+  .questions-section { margin-top: 3rem; }
+
+  .q-group { margin-top: 1.25rem; }
+
+  .q-group-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .q-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .q-list li {
+    padding: 0.4rem 0.75rem;
+    border-left: 2px solid var(--gray-dim);
+    margin-bottom: 0.35rem;
+    font-size: 0.83rem;
+    color: #999;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .q-list li:hover {
+    border-color: var(--red);
+    color: var(--white);
+    cursor: default;
+  }
+
+  .q-list.cannot li { border-left-color: rgba(139,0,0,0.3); }
+  .q-list.action li { border-left-color: var(--red); color: var(--white); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 3rem 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .contact-item {
+    font-size: 0.82rem;
+  }
+
+  .contact-item .label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--red);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-item a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item a:hover { color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--gray-dim);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+  footer span { color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HERO — KDCI 4.0 BRANDING + SPACE BG
+     ══════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- Inline space background SVG -->
+  <svg class="hero-bg" viewBox="0 0 1440 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="spaceBg" cx="50%" cy="50%" r="70%">
+        <stop offset="0%" stop-color="#0D0A18"/>
+        <stop offset="100%" stop-color="#020204"/>
+      </radialGradient>
+      <radialGradient id="nebula1" cx="70%" cy="40%" r="35%">
+        <stop offset="0%" stop-color="#6B0000" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#6B0000" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="nebula2" cx="25%" cy="65%" r="25%">
+        <stop offset="0%" stop-color="#3D0010" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#3D0010" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="nebula3" cx="55%" cy="30%" r="20%">
+        <stop offset="0%" stop-color="#CC0000" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#CC0000" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="blur1"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="blur2"><feGaussianBlur stdDeviation="30"/></filter>
+    </defs>
+    <!-- Base space -->
+    <rect width="1440" height="420" fill="url(#spaceBg)"/>
+    <!-- Nebula layers -->
+    <ellipse cx="1010" cy="168" rx="420" ry="200" fill="url(#nebula1)" filter="url(#blur2)"/>
+    <ellipse cx="360" cy="273" rx="300" ry="160" fill="url(#nebula2)" filter="url(#blur2)"/>
+    <ellipse cx="792" cy="126" rx="240" ry="120" fill="url(#nebula3)" filter="url(#blur1)"/>
+    <!-- Stars — tiny white dots -->
+    <g fill="white">
+      <circle cx="42" cy="18" r="0.6" opacity="0.9"/><circle cx="118" cy="55" r="0.4" opacity="0.7"/>
+      <circle cx="203" cy="12" r="0.8" opacity="0.95"/><circle cx="289" cy="38" r="0.5" opacity="0.6"/>
+      <circle cx="374" cy="72" r="0.4" opacity="0.8"/><circle cx="431" cy="14" r="0.7" opacity="0.9"/>
+      <circle cx="512" cy="48" r="0.5" opacity="0.65"/><circle cx="598" cy="22" r="0.9" opacity="1"/>
+      <circle cx="671" cy="61" r="0.4" opacity="0.7"/><circle cx="745" cy="8" r="0.6" opacity="0.85"/>
+      <circle cx="823" cy="44" r="0.5" opacity="0.75"/><circle cx="902" cy="17" r="0.8" opacity="0.95"/>
+      <circle cx="978" cy="59" r="0.4" opacity="0.6"/><circle cx="1054" cy="25" r="0.7" opacity="0.9"/>
+      <circle cx="1132" cy="50" r="0.5" opacity="0.7"/><circle cx="1208" cy="11" r="0.9" opacity="1"/>
+      <circle cx="1289" cy="42" r="0.4" opacity="0.65"/><circle cx="1374" cy="28" r="0.6" opacity="0.8"/>
+      <circle cx="68" cy="95" r="0.5" opacity="0.75"/><circle cx="155" cy="120" r="0.8" opacity="0.9"/>
+      <circle cx="240" cy="88" r="0.4" opacity="0.6"/><circle cx="318" cy="110" r="0.6" opacity="0.85"/>
+      <circle cx="405" cy="135" r="0.5" opacity="0.7"/><circle cx="488" cy="92" r="0.7" opacity="0.95"/>
+      <circle cx="563" cy="118" r="0.4" opacity="0.65"/><circle cx="642" cy="100" r="0.9" opacity="1"/>
+      <circle cx="720" cy="130" r="0.5" opacity="0.75"/><circle cx="798" cy="88" r="0.6" opacity="0.8"/>
+      <circle cx="875" cy="115" r="0.4" opacity="0.7"/><circle cx="953" cy="98" r="0.8" opacity="0.9"/>
+      <circle cx="1028" cy="125" r="0.5" opacity="0.65"/><circle cx="1105" cy="90" r="0.7" opacity="0.85"/>
+      <circle cx="1183" cy="118" r="0.4" opacity="0.6"/><circle cx="1260" cy="105" r="0.6" opacity="0.8"/>
+      <circle cx="1338" cy="132" r="0.5" opacity="0.75"/><circle cx="1412" cy="97" r="0.8" opacity="0.9"/>
+      <circle cx="30" cy="175" r="0.6" opacity="0.8"/><circle cx="98" cy="195" r="0.4" opacity="0.65"/>
+      <circle cx="178" cy="162" r="0.7" opacity="0.9"/><circle cx="255" cy="188" r="0.5" opacity="0.7"/>
+      <circle cx="332" cy="172" r="0.4" opacity="0.6"/><circle cx="418" cy="198" r="0.8" opacity="0.95"/>
+      <circle cx="495" cy="165" r="0.5" opacity="0.75"/><circle cx="578" cy="190" r="0.6" opacity="0.85"/>
+      <circle cx="655" cy="175" r="0.4" opacity="0.7"/><circle cx="730" cy="200" r="0.9" opacity="1"/>
+      <circle cx="812" cy="168" r="0.5" opacity="0.65"/><circle cx="888" cy="192" r="0.7" opacity="0.8"/>
+      <circle cx="965" cy="178" r="0.4" opacity="0.6"/><circle cx="1042" cy="195" r="0.6" opacity="0.85"/>
+      <circle cx="1118" cy="162" r="0.5" opacity="0.75"/><circle cx="1195" cy="188" r="0.8" opacity="0.9"/>
+      <circle cx="1272" cy="172" r="0.4" opacity="0.65"/><circle cx="1350" cy="195" r="0.6" opacity="0.8"/>
+      <circle cx="1425" cy="165" r="0.5" opacity="0.7"/><circle cx="55" cy="250" r="0.7" opacity="0.85"/>
+      <circle cx="132" cy="275" r="0.4" opacity="0.6"/><circle cx="210" cy="240" r="0.6" opacity="0.8"/>
+      <circle cx="290" cy="268" r="0.5" opacity="0.7"/><circle cx="368" cy="252" r="0.8" opacity="0.95"/>
+      <circle cx="445" cy="278" r="0.4" opacity="0.65"/><circle cx="522" cy="245" r="0.7" opacity="0.9"/>
+      <circle cx="600" cy="270" r="0.5" opacity="0.75"/><circle cx="678" cy="255" r="0.6" opacity="0.85"/>
+      <circle cx="755" cy="280" r="0.4" opacity="0.6"/><circle cx="832" cy="248" r="0.9" opacity="1"/>
+      <circle cx="910" cy="272" r="0.5" opacity="0.7"/><circle cx="988" cy="258" r="0.7" opacity="0.8"/>
+      <circle cx="1065" cy="282" r="0.4" opacity="0.65"/><circle cx="1142" cy="250" r="0.6" opacity="0.85"/>
+      <circle cx="1220" cy="275" r="0.5" opacity="0.75"/><circle cx="1298" cy="245" r="0.8" opacity="0.9"/>
+      <circle cx="1375" cy="268" r="0.4" opacity="0.6"/><circle cx="1430" cy="255" r="0.6" opacity="0.8"/>
+      <circle cx="80" cy="338" r="0.5" opacity="0.7"/><circle cx="160" cy="360" r="0.7" opacity="0.85"/>
+      <circle cx="240" cy="325" r="0.4" opacity="0.6"/><circle cx="320" cy="352" r="0.6" opacity="0.8"/>
+      <circle cx="400" cy="338" r="0.8" opacity="0.9"/><circle cx="480" cy="365" r="0.4" opacity="0.65"/>
+      <circle cx="560" cy="330" r="0.5" opacity="0.75"/><circle cx="640" cy="355" r="0.7" opacity="0.85"/>
+      <circle cx="720" cy="340" r="0.4" opacity="0.6"/><circle cx="800" cy="368" r="0.9" opacity="1"/>
+      <circle cx="880" cy="332" r="0.5" opacity="0.7"/><circle cx="960" cy="358" r="0.6" opacity="0.8"/>
+      <circle cx="1040" cy="342" r="0.4" opacity="0.65"/><circle cx="1120" cy="365" r="0.8" opacity="0.9"/>
+      <circle cx="1200" cy="328" r="0.5" opacity="0.75"/><circle cx="1280" cy="355" r="0.6" opacity="0.85"/>
+      <circle cx="1360" cy="340" r="0.4" opacity="0.6"/><circle cx="1420" cy="362" r="0.7" opacity="0.8"/>
+    </g>
+    <!-- Bright star clusters -->
+    <g fill="white" opacity="0.95">
+      <circle cx="598" cy="22" r="1.4"/><circle cx="602" cy="19" r="0.6" opacity="0.5"/>
+      <circle cx="1208" cy="11" r="1.5"/><circle cx="1212" cy="14" r="0.5" opacity="0.5"/>
+      <circle cx="730" cy="200" r="1.3"/><circle cx="726" cy="197" r="0.6" opacity="0.4"/>
+      <circle cx="832" cy="248" r="1.4"/><circle cx="836" cy="244" r="0.5" opacity="0.5"/>
+      <circle cx="800" cy="368" r="1.2"/><circle cx="804" cy="365" r="0.5" opacity="0.4"/>
+    </g>
+    <!-- Red accent glow near center-right -->
+    <ellipse cx="920" cy="210" rx="80" ry="40" fill="#CC0000" opacity="0.06" filter="url(#blur1)"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="kdci-version">// INITIATIVE — AI MANAGED OPERATIONS</div>
+    <div class="kdci-title">KDCI <span>4.0</span></div>
+    <div class="tagline">
+      <strong>Intelligent Infrastructure.</strong> Human Accountability. &nbsp;|&nbsp; Powered by AI
+    </div>
+  </div>
+</section>
+<div class="hero-line"></div>
+
+<!-- ══════════════════════════════════════
+     CONTENT
+     ══════════════════════════════════════ -->
+<div class="content">
+
+  <!-- Widget -->
+  <div class="widget-section" style="margin-top:2.5rem;">
+    <div class="section-label">// Voice Agent</div>
+    <h2>Talk to Emman</h2>
+    <p>KDCI's AI Support Agent — available 24/7. Ask about our services, onboarding, or billing. Say <em>"I want to talk to a human"</em> to be connected to a live agent.</p>
+    <div class="widget-wrapper">
+      <elevenlabs-convai agent-id="agent_2401kjzrkvqsf"></elevenlabs-convai>
+    </div>
+    <div class="disclaimer" style="margin-top:1.25rem;">
+      <p><strong>⚠ Widget Limitation:</strong> The browser widget supports full AI conversation but <strong>cannot transfer to a live phone agent</strong>. To experience the full end-to-end transfer flow, call the Twilio number below instead.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- How to Demo -->
+  <div class="section-label">// Demo Instructions</div>
+  <h2>How to Try This</h2>
+  <p>Two ways to interact — choose based on what you want to experience.</p>
+
+  <div class="demo-grid" style="margin-top:1.25rem;">
+
+    <!-- Phone Card -->
+    <div class="demo-card">
+      <h3><span class="icon">📞</span> Via Phone Call</h3>
+      <p style="margin-bottom:0.75rem; font-size:0.8rem;">Full end-to-end experience including live human transfer.</p>
+      <ol>
+        <li><span class="step-num">01 —</span> Dial <span class="phone-number">+1 681 293 1947</span> (hold <strong>0</strong> for <strong>+</strong> on your mobile)</li>
+        <li><span class="step-num">02 —</span> Emman (AI) answers. Ask 2–3 questions from the list below.</li>
+        <li><span class="step-num">03 —</span> Say <span class="highlight">"I want to talk to a human"</span> or <span class="highlight">"connect me to a person"</span></li>
+        <li><span class="step-num">04 —</span> Wait — the call transfers automatically to a live KDCI agent</li>
+        <li><span class="step-num">05 —</span> You're now speaking directly with a human representative</li>
+      </ol>
+      <div class="disclaimer">
+        <p><strong>Note:</strong> International call rates apply from Philippines (~₱15–25/min via Smart/Globe). Use WiFi calling or Google Voice to reduce cost.</p>
+      </div>
+    </div>
+
+    <!-- Widget Card -->
+    <div class="demo-card">
+      <h3><span class="icon">🌐</span> Via Browser Widget</h3>
+      <p style="margin-bottom:0.75rem; font-size:0.8rem;">Quick demo of AI conversation — no phone needed.</p>
+      <ol>
+        <li><span class="step-num">01 —</span> Click <span class="highlight">"Start a call"</span> in the widget above</li>
+        <li><span class="step-num">02 —</span> Allow microphone access when prompted</li>
+        <li><span class="step-num">03 —</span> Speak naturally — ask Emman questions</li>
+        <li><span class="step-num">04 —</span> Say <span class="highlight">"I want to talk to a human"</span> to see escalation behavior</li>
+        <li><span class="step-num">05 —</span> Note: transfer to live agent is not available in browser mode</li>
+      </ol>
+      <div class="disclaimer">
+        <p><strong>Limitation:</strong> Browser widget <strong>cannot</strong> forward to a live phone agent. This is an ElevenLabs platform constraint for web-based sessions. Full transfer only works via phone call.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Sample Questions -->
+  <div class="questions-section">
+    <div class="section-label">// Suggested Questions</div>
+    <h2>What to Ask Emman</h2>
+
+    <div class="q-group">
+      <div class="q-group-label">✅ Questions the AI can answer (from knowledge base)</div>
+      <ul class="q-list">
+        <li>"What services does KDCI offer?"</li>
+        <li>"Do you handle healthcare outsourcing or medical billing?"</li>
+        <li>"How long does it take to build a team with KDCI?"</li>
+        <li>"What industries does KDCI work with?"</li>
+        <li>"Can KDCI handle eCommerce back office support?"</li>
+        <li>"Where is KDCI located?"</li>
+        <li>"How does the onboarding process work for new clients?"</li>
+        <li>"What is KDCI's approach to AI Managed Operations?"</li>
+      </ul>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-label">👤 Questions about Emman (Allan Emmanuel Umali)</div>
+      <ul class="q-list">
+        <li>"Who is Emman?"</li>
+        <li>"What are Emman's specialties in AI?"</li>
+        <li>"What AI tools and platforms does Emman work with?"</li>
+        <li>"What services can Emman personally provide?"</li>
+        <li>"Tell me about Emman's background in technology."</li>
+      </ul>
+      <div class="disclaimer" style="margin-top:0.5rem;">
+        <p><strong>Note:</strong> These questions are not yet in the knowledge base. Emman (AI) will respond honestly that it doesn't have that information — this is expected and demonstrates responsible AI behavior.</p>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-label">❌ Questions the AI cannot answer (outside knowledge base)</div>
+      <ul class="q-list cannot">
+        <li>"What is the exact monthly pricing for a 5-person team?"</li>
+        <li>"Can you pull up my account details or contract?"</li>
+        <li>"What's the status of my current project?"</li>
+        <li>"Who is my dedicated account manager?"</li>
+        <li>"Can you process a billing adjustment for me?"</li>
+      </ul>
+      <div class="disclaimer" style="margin-top:0.5rem;">
+        <p><strong>Expected behavior:</strong> Emman will acknowledge it cannot access account-specific data and will offer to escalate to a human agent — demonstrating proper AI boundaries.</p>
+      </div>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-label">🔴 Escalation trigger — most important step</div>
+      <ul class="q-list action">
+        <li>"I want to talk to a human."</li>
+        <li>"Connect me to a real person."</li>
+        <li>"I'm not satisfied with this response."</li>
+        <li>"Transfer me to your team."</li>
+        <li>"I need to speak with someone directly."</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Contact -->
+  <div class="section-label">// Contact KDCI</div>
+  <h2>Get in Touch</h2>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="label">Email</span>
+      <a href="mailto:info@kdci.co">info@kdci.co</a>
+    </div>
+    <div class="contact-item">
+      <span class="label">Phone</span>
+      <a href="tel:+12134604240">+1 213 460 4240</a>
+    </div>
+    <div class="contact-item">
+      <span class="label">Website</span>
+      <a href="https://www.kdci.co" target="_blank">kdci.co</a>
+    </div>
+    <div class="contact-item">
+      <span class="label">Address</span>
+      <span style="color:#777;">3008 One Corporate Centre,<br>Ortigas Center, Pasig City,<br>Metro Manila, Philippines</span>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<footer>
+  <p>© 2026 KDCI Outsourcing &nbsp;·&nbsp; <span>KDCI 4.0</span> AI Voice Agent Demo &nbsp;·&nbsp; Powered by ElevenLabs Agents</p>
+</footer>
+
+<!-- ElevenLabs Widget Script -->
+<script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+
+</body>
+</html>
