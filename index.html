@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="KDCI 4.0 — AI-Powered Operations Demo. Experience KDCI's AI Voice Agent live.">
 <meta property="og:title" content="KDCI 4.0 — AI Voice Agent Demo">
-<meta property="og:description" content="Talk to Emman, KDCI's AI Support Agent. Available 24/7.">
+<meta property="og:description" content="Talk to Elaine, KDCI's AI Inbound Sales & Support Agent. Available 24/7.">
 <meta property="og:type" content="website">
 <title>KDCI 4.0 — AI Voice Agent Demo</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -493,13 +493,38 @@
   <!-- Widget -->
   <div class="widget-section" style="margin-top:2.5rem;">
     <div class="section-label">// Voice Agent</div>
-    <h2>Talk to Emman</h2>
-    <p>KDCI's AI Support Agent — available 24/7. Ask about our services, onboarding, or billing. Say <em>"I want to talk to a human"</em> to be connected to a live agent.</p>
+    <h2>Talk to Elaine</h2>
+    <p>KDCI's AI Inbound Sales & Support Agent — available 24/7 in 6 languages. Ask about services, pricing, onboarding, or staffing. Elaine can capture your details for a free consultation follow-up. Say <em>"I want to talk to a human"</em> to be connected to a live agent.</p>
+    <p style="margin-top:0.5rem; font-size:0.82rem; color:#888;"><em>"Hi! I'm Elaine, a call agent from KDCI. How can I help you today?"</em></p>
     <div class="widget-wrapper">
       <elevenlabs-convai agent-id="agent_2401kjzrkvqsfy8b5vg9f0yv66b2"></elevenlabs-convai>
     </div>
     <div class="disclaimer" style="margin-top:1.25rem;">
       <p><strong>⚠ Widget Limitation:</strong> The browser widget supports full AI conversation but <strong>cannot transfer to a live phone agent</strong>. To experience the full end-to-end transfer flow, call the Twilio number below instead.</p>
+    </div>
+  </div>
+
+  <!-- Capabilities -->
+  <div style="margin-top:2.5rem;">
+    <div class="section-label">// What's New in v4.0</div>
+    <h2>Elaine's Capabilities</h2>
+    <div class="demo-grid" style="margin-top:1rem;">
+      <div class="demo-card">
+        <h3><span class="icon">🌍</span> Multilingual</h3>
+        <p style="font-size:0.83rem; color:var(--gray);">Speaks 6 languages: English, Filipino, Spanish, Japanese, German, and Italian. Responds in the caller's language automatically.</p>
+      </div>
+      <div class="demo-card">
+        <h3><span class="icon">📋</span> Lead Capture</h3>
+        <p style="font-size:0.83rem; color:var(--gray);">Collects caller contact information (name, phone, email, company) for follow-up. Encourages scheduling a free consultation with a KDCI specialist.</p>
+      </div>
+      <div class="demo-card">
+        <h3><span class="icon">📧</span> Post-Call Notification</h3>
+        <p style="font-size:0.83rem; color:var(--gray);">After every call, lead details are automatically emailed to the KDCI team — including inquiry summary, call outcome, and transcript.</p>
+      </div>
+      <div class="demo-card">
+        <h3><span class="icon">📚</span> Full Knowledge Base</h3>
+        <p style="font-size:0.83rem; color:var(--gray);">Pricing for 122 roles across 7 departments, company overview, staffing model, and 25+ FAQs on recruitment, onboarding, PIM, creative services, and more.</p>
+      </div>
     </div>
   </div>
 
@@ -518,7 +543,7 @@
       <p style="margin-bottom:0.75rem; font-size:0.8rem;">Full end-to-end experience including live human transfer.</p>
       <ol>
         <li><span class="step-num">01 —</span> Dial <span class="phone-number">+1 681 293 1947</span> (hold <strong>0</strong> for <strong>+</strong> on your mobile)</li>
-        <li><span class="step-num">02 —</span> Emman (AI) answers. Ask 2–3 questions from the list below.</li>
+        <li><span class="step-num">02 —</span> Elaine (AI) answers. Ask 2–3 questions from the list below.</li>
         <li><span class="step-num">03 —</span> Say <span class="highlight">"I want to talk to a human"</span> or <span class="highlight">"connect me to a person"</span></li>
         <li><span class="step-num">04 —</span> Wait — the call transfers automatically to a live KDCI agent</li>
         <li><span class="step-num">05 —</span> You're now speaking directly with a human representative</li>
@@ -535,7 +560,7 @@
       <ol>
         <li><span class="step-num">01 —</span> Click <span class="highlight">"Start a call"</span> in the widget above</li>
         <li><span class="step-num">02 —</span> Allow microphone access when prompted</li>
-        <li><span class="step-num">03 —</span> Speak naturally — ask Emman questions</li>
+        <li><span class="step-num">03 —</span> Speak naturally — ask Elaine questions</li>
         <li><span class="step-num">04 —</span> Say <span class="highlight">"I want to talk to a human"</span> to see escalation behavior</li>
         <li><span class="step-num">05 —</span> Note: transfer to live agent is not available in browser mode</li>
       </ol>
@@ -551,58 +576,72 @@
   <!-- Sample Questions -->
   <div class="questions-section">
     <div class="section-label">// Suggested Questions</div>
-    <h2>What to Ask Emman</h2>
+    <h2>What to Ask Elaine</h2>
 
     <div class="q-group">
-      <div class="q-group-label">✅ Questions the AI can answer (from knowledge base)</div>
+      <div class="q-group-label">✅ General — from knowledge base</div>
       <ul class="q-list">
         <li>"What services does KDCI offer?"</li>
-        <li>"Do you handle healthcare outsourcing or medical billing?"</li>
-        <li>"How long does it take to build a team with KDCI?"</li>
-        <li>"What industries does KDCI work with?"</li>
-        <li>"Can KDCI handle eCommerce back office support?"</li>
         <li>"Where is KDCI located?"</li>
-        <li>"How does the onboarding process work for new clients?"</li>
-        <li>"What is KDCI's approach to AI Managed Operations?"</li>
+        <li>"How long has KDCI been operating?"</li>
       </ul>
     </div>
 
     <div class="q-group">
-      <div class="q-group-label">👤 Questions about Emman (Allan Emmanuel Umali)</div>
+      <div class="q-group-label">💰 Pricing — from knowledge base</div>
       <ul class="q-list">
-        <li>"Who is Emman?"</li>
-        <li>"What are Emman's specialties in AI?"</li>
-        <li>"What AI tools and platforms does Emman work with?"</li>
-        <li>"What services can Emman personally provide?"</li>
-        <li>"Tell me about Emman's background in technology."</li>
+        <li>"How much does it cost to hire a virtual assistant?"</li>
+        <li>"What are the rates for a customer service representative?"</li>
+        <li>"Can you give me pricing for a graphic designer?"</li>
+        <li>"Are there any hidden fees?"</li>
       </ul>
-      <div class="disclaimer" style="margin-top:0.5rem;">
-        <p><strong>Note:</strong> These questions are not yet in the knowledge base. Emman (AI) will respond honestly that it doesn't have that information — this is expected and demonstrates responsible AI behavior.</p>
-      </div>
     </div>
 
     <div class="q-group">
-      <div class="q-group-label">❌ Questions the AI cannot answer (outside knowledge base)</div>
+      <div class="q-group-label">⚙️ Process — from knowledge base</div>
+      <ul class="q-list">
+        <li>"How long does it take to get someone started?"</li>
+        <li>"What's the recruitment process like?"</li>
+        <li>"Do we get to interview candidates?"</li>
+        <li>"What tools do your teams use for communication?"</li>
+      </ul>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-label">🏢 Department-specific — from knowledge base</div>
+      <ul class="q-list">
+        <li>"Can you handle Product Information Management?"</li>
+        <li>"What eCommerce platforms does your PIM team support?"</li>
+        <li>"How does quality assurance work for creative deliverables?"</li>
+      </ul>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-label">🌐 Multilingual — try a different language</div>
+      <ul class="q-list">
+        <li>"Pwede bang mag-inquire tungkol sa outsourcing services ninyo?" <span style="color:#666; font-size:0.75rem;">(Filipino)</span></li>
+        <li>"Hola, me gustaría saber sobre sus servicios." <span style="color:#666; font-size:0.75rem;">(Spanish)</span></li>
+      </ul>
+    </div>
+
+    <div class="q-group">
+      <div class="q-group-label">⚠️ Honest escalation — demonstrates AI boundaries</div>
       <ul class="q-list cannot">
         <li>"What is the exact monthly pricing for a 5-person team?"</li>
-        <li>"Can you pull up my account details or contract?"</li>
+        <li>"Can you pull up my account details?"</li>
         <li>"What's the status of my current project?"</li>
-        <li>"Who is my dedicated account manager?"</li>
-        <li>"Can you process a billing adjustment for me?"</li>
       </ul>
       <div class="disclaimer" style="margin-top:0.5rem;">
-        <p><strong>Expected behavior:</strong> Emman will acknowledge it cannot access account-specific data and will offer to escalate to a human agent — demonstrating proper AI boundaries.</p>
+        <p><strong>Expected behavior:</strong> Elaine will encourage a consultation or offer to have a specialist follow up — demonstrating proper AI boundaries and honest escalation.</p>
       </div>
     </div>
 
     <div class="q-group">
-      <div class="q-group-label">🔴 Escalation trigger — most important step</div>
+      <div class="q-group-label">🔴 Escalation trigger — human transfer</div>
       <ul class="q-list action">
         <li>"I want to talk to a human."</li>
         <li>"Connect me to a real person."</li>
-        <li>"I'm not satisfied with this response."</li>
-        <li>"Transfer me to your team."</li>
-        <li>"I need to speak with someone directly."</li>
+        <li>"I'm not satisfied — transfer me."</li>
       </ul>
     </div>
   </div>
